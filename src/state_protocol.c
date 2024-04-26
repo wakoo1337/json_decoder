@@ -21,18 +21,23 @@ void state_protocol(ojVal value, struct Context *ctx) {
 		if (elem) {
 			switch (value->type) {
 				case OJ_TRUE:
+					free(ctx->items[elem->index]);
 					ctx->items[elem->index] = strdup("true");
 					break;
 				case OJ_FALSE:
+					free(ctx->items[elem->index]);
 					ctx->items[elem->index] = strdup("false");
 					break;
 				case OJ_INT:
+					free(ctx->items[elem->index]);
 					ctx->items[elem->index] = strdup(myItoA(oj_int_get(value), scratchpad));
 					break;
 				case OJ_STRING:
+					free(ctx->items[elem->index]);
 					ctx->items[elem->index] = strdup(oj_str_get(value));
 					break;
 				case OJ_BIG:
+					free(ctx->items[elem->index]);
 					ctx->items[elem->index] = strdup(oj_bignum_get(value));
 					break;
 			}
